@@ -12,9 +12,9 @@ Seyyed Ali Aletaha <ali.aletaha@gmail.com>
 
 #Main Features of JsfShop:
 
-*Jsf FrameWork
+Jsf FrameWork
 
-*Spring Security
+Spring Security
 
 Bootstrap admin Panel
 
