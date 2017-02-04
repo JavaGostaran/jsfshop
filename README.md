@@ -1,5 +1,5 @@
 # jsfshop
-First Product of JavaGostaran Company at 2013
+Jsfshop is a simple web shop based on JSF framework
 
 
 This WebShop Create at javagostaran with developig of 
