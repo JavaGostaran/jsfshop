@@ -11,8 +11,12 @@ Mahdi Soltani <mehdii.soltanii@gmail.com>
 Seyyed Ali Aletaha <ali.aletaha@gmail.com>
 
 #Main Features of JsfShop:
--Jsf FrameWork
--Spring Security
--Bootstrap admin Panel
--Resource Bundles for Persian language
+
+*Jsf FrameWork
+
+*Spring Security
+
+Bootstrap admin Panel
+
+Resource Bundles for Persian language
 
