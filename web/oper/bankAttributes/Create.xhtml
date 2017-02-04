@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBankAttributesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBankAttributesLabel_idBankAttributes}" for="idBankAttributes" />
+                    <h:inputText id="idBankAttributes" value="#{bankAttributesController.selected.idBankAttributes}" title="#{bundle.CreateBankAttributesTitle_idBankAttributes}" required="true" requiredMessage="#{bundle.CreateBankAttributesRequiredMessage_idBankAttributes}"/>
+                    <h:outputLabel value="#{bundle.CreateBankAttributesLabel_titleBankAttributes}" for="titleBankAttributes" />
+                    <h:inputTextarea rows="4" cols="30" id="titleBankAttributes" value="#{bankAttributesController.selected.titleBankAttributes}" title="#{bundle.CreateBankAttributesTitle_titleBankAttributes}" required="true" requiredMessage="#{bundle.CreateBankAttributesRequiredMessage_titleBankAttributes}"/>
+                    <h:outputLabel value="#{bundle.CreateBankAttributesLabel_bankTblidBank}" for="bankTblidBank" />
+                    <h:selectOneMenu id="bankTblidBank" value="#{bankAttributesController.selected.bankTblidBank}" title="#{bundle.CreateBankAttributesTitle_bankTblidBank}" required="true" requiredMessage="#{bundle.CreateBankAttributesRequiredMessage_bankTblidBank}">
+                        <f:selectItems value="#{bankTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBankAttributesLabel_bankAttributeTypeTblidBankAttributeType}" for="bankAttributeTypeTblidBankAttributeType" />
+                    <h:selectOneMenu id="bankAttributeTypeTblidBankAttributeType" value="#{bankAttributesController.selected.bankAttributeTypeTblidBankAttributeType}" title="#{bundle.CreateBankAttributesTitle_bankAttributeTypeTblidBankAttributeType}" required="true" requiredMessage="#{bundle.CreateBankAttributesRequiredMessage_bankAttributeTypeTblidBankAttributeType}">
+                        <f:selectItems value="#{bankAttributeTypeTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bankAttributesController.create}" value="#{bundle.CreateBankAttributesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bankAttributesController.prepareList}" value="#{bundle.CreateBankAttributesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBankAttributesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

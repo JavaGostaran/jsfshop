@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAttributesTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAttributesTblEmpty}" rendered="#{attributesTblController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{attributesTblController.items.rowCount > 0}">
+                    <h:outputText value="#{attributesTblController.pagination.pageFirstItem + 1}..#{attributesTblController.pagination.pageLastItem + 1}/#{attributesTblController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{attributesTblController.previous}" value="#{bundle.Previous} #{attributesTblController.pagination.pageSize}" rendered="#{attributesTblController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{attributesTblController.next}" value="#{bundle.Next} #{attributesTblController.pagination.pageSize}" rendered="#{attributesTblController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{attributesTblController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttributesTblTitle_idAttributes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAttributes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttributesTblTitle_titleAttributes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleAttributes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAttributesTblTitle_attributeTypeidAttributeType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.attributeTypeidAttributeType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{attributesTblController.prepareView}" value="#{bundle.ListAttributesTblViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{attributesTblController.prepareEdit}" value="#{bundle.ListAttributesTblEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{attributesTblController.destroy}" value="#{bundle.ListAttributesTblDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{attributesTblController.prepareCreate}" value="#{bundle.ListAttributesTblCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAttributesTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

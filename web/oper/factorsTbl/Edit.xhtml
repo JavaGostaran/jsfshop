@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFactorsTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_idFactorsTbl}" for="idFactorsTbl" />
+                    <h:inputText id="idFactorsTbl" value="#{factorsTblController.selected.idFactorsTbl}" title="#{bundle.EditFactorsTblTitle_idFactorsTbl}" required="true" requiredMessage="#{bundle.EditFactorsTblRequiredMessage_idFactorsTbl}"/>
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_registerDate}" for="registerDate" />
+                    <h:inputText id="registerDate" value="#{factorsTblController.selected.registerDate}" title="#{bundle.EditFactorsTblTitle_registerDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_factorPostalCode}" for="factorPostalCode" />
+                    <h:inputText id="factorPostalCode" value="#{factorsTblController.selected.factorPostalCode}" title="#{bundle.EditFactorsTblTitle_factorPostalCode}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_factorAddress}" for="factorAddress" />
+                    <h:inputTextarea rows="4" cols="30" id="factorAddress" value="#{factorsTblController.selected.factorAddress}" title="#{bundle.EditFactorsTblTitle_factorAddress}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_factorNameAndFamily}" for="factorNameAndFamily" />
+                    <h:inputText id="factorNameAndFamily" value="#{factorsTblController.selected.factorNameAndFamily}" title="#{bundle.EditFactorsTblTitle_factorNameAndFamily}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_postCost}" for="postCost" />
+                    <h:inputText id="postCost" value="#{factorsTblController.selected.postCost}" title="#{bundle.EditFactorsTblTitle_postCost}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_emphericalCost}" for="emphericalCost" />
+                    <h:inputText id="emphericalCost" value="#{factorsTblController.selected.emphericalCost}" title="#{bundle.EditFactorsTblTitle_emphericalCost}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_descriptionFactor}" for="descriptionFactor" />
+                    <h:inputTextarea rows="4" cols="30" id="descriptionFactor" value="#{factorsTblController.selected.descriptionFactor}" title="#{bundle.EditFactorsTblTitle_descriptionFactor}" />
+                    <h:outputLabel value="#{bundle.EditFactorsTblLabel_userUSERID}" for="userUSERID" />
+                    <h:selectOneMenu id="userUSERID" value="#{factorsTblController.selected.userUSERID}" title="#{bundle.EditFactorsTblTitle_userUSERID}" required="true" requiredMessage="#{bundle.EditFactorsTblRequiredMessage_userUSERID}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{factorsTblController.update}" value="#{bundle.EditFactorsTblSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFactorsTblViewLink}"/>
+                <br />
+                <h:commandLink action="#{factorsTblController.prepareList}" value="#{bundle.EditFactorsTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFactorsTblIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

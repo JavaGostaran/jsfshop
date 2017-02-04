@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAttributesTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAttributesTblLabel_idAttributes}" for="idAttributes" />
+                    <h:inputText id="idAttributes" value="#{attributesTblController.selected.idAttributes}" title="#{bundle.CreateAttributesTblTitle_idAttributes}" required="true" requiredMessage="#{bundle.CreateAttributesTblRequiredMessage_idAttributes}"/>
+                    <h:outputLabel value="#{bundle.CreateAttributesTblLabel_titleAttributes}" for="titleAttributes" />
+                    <h:inputText id="titleAttributes" value="#{attributesTblController.selected.titleAttributes}" title="#{bundle.CreateAttributesTblTitle_titleAttributes}" required="true" requiredMessage="#{bundle.CreateAttributesTblRequiredMessage_titleAttributes}"/>
+                    <h:outputLabel value="#{bundle.CreateAttributesTblLabel_attributeTypeidAttributeType}" for="attributeTypeidAttributeType" />
+                    <h:selectOneMenu id="attributeTypeidAttributeType" value="#{attributesTblController.selected.attributeTypeidAttributeType}" title="#{bundle.CreateAttributesTblTitle_attributeTypeidAttributeType}" required="true" requiredMessage="#{bundle.CreateAttributesTblRequiredMessage_attributeTypeidAttributeType}">
+                        <f:selectItems value="#{attributeTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{attributesTblController.create}" value="#{bundle.CreateAttributesTblSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{attributesTblController.prepareList}" value="#{bundle.CreateAttributesTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAttributesTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

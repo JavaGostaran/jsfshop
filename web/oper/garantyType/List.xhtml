@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGarantyTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGarantyTypeEmpty}" rendered="#{garantyTypeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{garantyTypeController.items.rowCount > 0}">
+                    <h:outputText value="#{garantyTypeController.pagination.pageFirstItem + 1}..#{garantyTypeController.pagination.pageLastItem + 1}/#{garantyTypeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{garantyTypeController.previous}" value="#{bundle.Previous} #{garantyTypeController.pagination.pageSize}" rendered="#{garantyTypeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{garantyTypeController.next}" value="#{bundle.Next} #{garantyTypeController.pagination.pageSize}" rendered="#{garantyTypeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{garantyTypeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGarantyTypeTitle_idGarantyType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGarantyType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGarantyTypeTitle_titleGarantyType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleGarantyType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{garantyTypeController.prepareView}" value="#{bundle.ListGarantyTypeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{garantyTypeController.prepareEdit}" value="#{bundle.ListGarantyTypeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{garantyTypeController.destroy}" value="#{bundle.ListGarantyTypeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{garantyTypeController.prepareCreate}" value="#{bundle.ListGarantyTypeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListGarantyTypeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

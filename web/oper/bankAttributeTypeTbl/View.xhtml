@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBankAttributeTypeTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBankAttributeTypeTblLabel_idBankAttributeType}"/>
+                    <h:outputText value="#{bankAttributeTypeTblController.selected.idBankAttributeType}" title="#{bundle.ViewBankAttributeTypeTblTitle_idBankAttributeType}"/>
+                    <h:outputText value="#{bundle.ViewBankAttributeTypeTblLabel_titleBankAttributeType}"/>
+                    <h:outputText value="#{bankAttributeTypeTblController.selected.titleBankAttributeType}" title="#{bundle.ViewBankAttributeTypeTblTitle_titleBankAttributeType}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bankAttributeTypeTblController.destroyAndView}" value="#{bundle.ViewBankAttributeTypeTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBankAttributeTypeTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{bankAttributeTypeTblController.prepareCreate}" value="#{bundle.ViewBankAttributeTypeTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{bankAttributeTypeTblController.prepareList}" value="#{bundle.ViewBankAttributeTypeTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBankAttributeTypeTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

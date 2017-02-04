@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAttributeValuesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAttributeValuesLabel_idAttributeValues}"/>
+                    <h:outputText value="#{attributeValuesController.selected.idAttributeValues}" title="#{bundle.ViewAttributeValuesTitle_idAttributeValues}"/>
+                    <h:outputText value="#{bundle.ViewAttributeValuesLabel_descriptionAttributeValue}"/>
+                    <h:outputText value="#{attributeValuesController.selected.descriptionAttributeValue}" title="#{bundle.ViewAttributeValuesTitle_descriptionAttributeValue}"/>
+                    <h:outputText value="#{bundle.ViewAttributeValuesLabel_isBoolean}"/>
+                    <h:outputText value="#{attributeValuesController.selected.isBoolean}" title="#{bundle.ViewAttributeValuesTitle_isBoolean}"/>
+                    <h:outputText value="#{bundle.ViewAttributeValuesLabel_titleValues}"/>
+                    <h:outputText value="#{attributeValuesController.selected.titleValues}" title="#{bundle.ViewAttributeValuesTitle_titleValues}"/>
+                    <h:outputText value="#{bundle.ViewAttributeValuesLabel_attributesTblidAttributes}"/>
+                    <h:outputText value="#{attributeValuesController.selected.attributesTblidAttributes}" title="#{bundle.ViewAttributeValuesTitle_attributesTblidAttributes}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{attributeValuesController.destroyAndView}" value="#{bundle.ViewAttributeValuesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAttributeValuesEditLink}"/>
+                <br />
+                <h:commandLink action="#{attributeValuesController.prepareCreate}" value="#{bundle.ViewAttributeValuesCreateLink}" />
+                <br />
+                <h:commandLink action="#{attributeValuesController.prepareList}" value="#{bundle.ViewAttributeValuesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAttributeValuesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

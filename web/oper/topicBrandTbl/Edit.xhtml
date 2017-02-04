@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTopicBrandTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTopicBrandTblLabel_idTopicBrandTbl}" for="idTopicBrandTbl" />
+                    <h:inputText id="idTopicBrandTbl" value="#{topicBrandTblController.selected.idTopicBrandTbl}" title="#{bundle.EditTopicBrandTblTitle_idTopicBrandTbl}" required="true" requiredMessage="#{bundle.EditTopicBrandTblRequiredMessage_idTopicBrandTbl}"/>
+                    <h:outputLabel value="#{bundle.EditTopicBrandTblLabel_topicsidTopics}" for="topicsidTopics" />
+                    <h:selectOneMenu id="topicsidTopics" value="#{topicBrandTblController.selected.topicsidTopics}" title="#{bundle.EditTopicBrandTblTitle_topicsidTopics}" required="true" requiredMessage="#{bundle.EditTopicBrandTblRequiredMessage_topicsidTopics}">
+                        <f:selectItems value="#{topicsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTopicBrandTblLabel_productYblidProduct}" for="productYblidProduct" />
+                    <h:selectOneMenu id="productYblidProduct" value="#{topicBrandTblController.selected.productYblidProduct}" title="#{bundle.EditTopicBrandTblTitle_productYblidProduct}" required="true" requiredMessage="#{bundle.EditTopicBrandTblRequiredMessage_productYblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTopicBrandTblLabel_brandsidBrands}" for="brandsidBrands" />
+                    <h:selectOneMenu id="brandsidBrands" value="#{topicBrandTblController.selected.brandsidBrands}" title="#{bundle.EditTopicBrandTblTitle_brandsidBrands}" required="true" requiredMessage="#{bundle.EditTopicBrandTblRequiredMessage_brandsidBrands}">
+                        <f:selectItems value="#{brandsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{topicBrandTblController.update}" value="#{bundle.EditTopicBrandTblSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTopicBrandTblViewLink}"/>
+                <br />
+                <h:commandLink action="#{topicBrandTblController.prepareList}" value="#{bundle.EditTopicBrandTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTopicBrandTblIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

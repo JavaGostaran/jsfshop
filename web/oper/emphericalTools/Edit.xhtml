@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmphericalToolsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmphericalToolsLabel_idEmphericalTools}" for="idEmphericalTools" />
+                    <h:inputText id="idEmphericalTools" value="#{emphericalToolsController.selected.idEmphericalTools}" title="#{bundle.EditEmphericalToolsTitle_idEmphericalTools}" required="true" requiredMessage="#{bundle.EditEmphericalToolsRequiredMessage_idEmphericalTools}"/>
+                    <h:outputLabel value="#{bundle.EditEmphericalToolsLabel_titleEmphericalTools}" for="titleEmphericalTools" />
+                    <h:inputTextarea rows="4" cols="30" id="titleEmphericalTools" value="#{emphericalToolsController.selected.titleEmphericalTools}" title="#{bundle.EditEmphericalToolsTitle_titleEmphericalTools}" />
+                </h:panelGrid>
+                <h:commandLink action="#{emphericalToolsController.update}" value="#{bundle.EditEmphericalToolsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmphericalToolsViewLink}"/>
+                <br />
+                <h:commandLink action="#{emphericalToolsController.prepareList}" value="#{bundle.EditEmphericalToolsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmphericalToolsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

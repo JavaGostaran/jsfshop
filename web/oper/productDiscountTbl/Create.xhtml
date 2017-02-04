@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductDiscountTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductDiscountTblLabel_idProductDiscount}" for="idProductDiscount" />
+                    <h:inputText id="idProductDiscount" value="#{productDiscountTblController.selected.idProductDiscount}" title="#{bundle.CreateProductDiscountTblTitle_idProductDiscount}" required="true" requiredMessage="#{bundle.CreateProductDiscountTblRequiredMessage_idProductDiscount}"/>
+                    <h:outputLabel value="#{bundle.CreateProductDiscountTblLabel_discountValue}" for="discountValue" />
+                    <h:inputText id="discountValue" value="#{productDiscountTblController.selected.discountValue}" title="#{bundle.CreateProductDiscountTblTitle_discountValue}" />
+                    <h:outputLabel value="#{bundle.CreateProductDiscountTblLabel_isActive}" for="isActive" />
+                    <h:inputText id="isActive" value="#{productDiscountTblController.selected.isActive}" title="#{bundle.CreateProductDiscountTblTitle_isActive}" required="true" requiredMessage="#{bundle.CreateProductDiscountTblRequiredMessage_isActive}"/>
+                    <h:outputLabel value="#{bundle.CreateProductDiscountTblLabel_discountTypeidDiscountType}" for="discountTypeidDiscountType" />
+                    <h:selectOneMenu id="discountTypeidDiscountType" value="#{productDiscountTblController.selected.discountTypeidDiscountType}" title="#{bundle.CreateProductDiscountTblTitle_discountTypeidDiscountType}" required="true" requiredMessage="#{bundle.CreateProductDiscountTblRequiredMessage_discountTypeidDiscountType}">
+                        <f:selectItems value="#{discountTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productDiscountTblController.create}" value="#{bundle.CreateProductDiscountTblSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productDiscountTblController.prepareList}" value="#{bundle.CreateProductDiscountTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductDiscountTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

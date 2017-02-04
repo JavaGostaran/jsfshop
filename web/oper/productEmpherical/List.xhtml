@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductEmphericalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductEmphericalEmpty}" rendered="#{productEmphericalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productEmphericalController.items.rowCount > 0}">
+                    <h:outputText value="#{productEmphericalController.pagination.pageFirstItem + 1}..#{productEmphericalController.pagination.pageLastItem + 1}/#{productEmphericalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productEmphericalController.previous}" value="#{bundle.Previous} #{productEmphericalController.pagination.pageSize}" rendered="#{productEmphericalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productEmphericalController.next}" value="#{bundle.Next} #{productEmphericalController.pagination.pageSize}" rendered="#{productEmphericalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productEmphericalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductEmphericalTitle_idProductEmpherical}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProductEmpherical}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductEmphericalTitle_productYblidProduct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.productYblidProduct}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductEmphericalTitle_emphericalToolsidEmphericalTools}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emphericalToolsidEmphericalTools}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productEmphericalController.prepareView}" value="#{bundle.ListProductEmphericalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productEmphericalController.prepareEdit}" value="#{bundle.ListProductEmphericalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productEmphericalController.destroy}" value="#{bundle.ListProductEmphericalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productEmphericalController.prepareCreate}" value="#{bundle.ListProductEmphericalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductEmphericalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

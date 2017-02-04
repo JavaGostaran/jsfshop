@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBrandsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBrandsLabel_idBrands}" for="idBrands" />
+                    <h:inputText id="idBrands" value="#{brandsController.selected.idBrands}" title="#{bundle.EditBrandsTitle_idBrands}" required="true" requiredMessage="#{bundle.EditBrandsRequiredMessage_idBrands}"/>
+                    <h:outputLabel value="#{bundle.EditBrandsLabel_titleBrand}" for="titleBrand" />
+                    <h:inputText id="titleBrand" value="#{brandsController.selected.titleBrand}" title="#{bundle.EditBrandsTitle_titleBrand}" required="true" requiredMessage="#{bundle.EditBrandsRequiredMessage_titleBrand}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{brandsController.update}" value="#{bundle.EditBrandsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBrandsViewLink}"/>
+                <br />
+                <h:commandLink action="#{brandsController.prepareList}" value="#{bundle.EditBrandsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBrandsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductDiscountTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductDiscountTblLabel_idProductDiscount}"/>
+                    <h:outputText value="#{productDiscountTblController.selected.idProductDiscount}" title="#{bundle.ViewProductDiscountTblTitle_idProductDiscount}"/>
+                    <h:outputText value="#{bundle.ViewProductDiscountTblLabel_discountValue}"/>
+                    <h:outputText value="#{productDiscountTblController.selected.discountValue}" title="#{bundle.ViewProductDiscountTblTitle_discountValue}"/>
+                    <h:outputText value="#{bundle.ViewProductDiscountTblLabel_isActive}"/>
+                    <h:outputText value="#{productDiscountTblController.selected.isActive}" title="#{bundle.ViewProductDiscountTblTitle_isActive}"/>
+                    <h:outputText value="#{bundle.ViewProductDiscountTblLabel_discountTypeidDiscountType}"/>
+                    <h:outputText value="#{productDiscountTblController.selected.discountTypeidDiscountType}" title="#{bundle.ViewProductDiscountTblTitle_discountTypeidDiscountType}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productDiscountTblController.destroyAndView}" value="#{bundle.ViewProductDiscountTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductDiscountTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{productDiscountTblController.prepareCreate}" value="#{bundle.ViewProductDiscountTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{productDiscountTblController.prepareList}" value="#{bundle.ViewProductDiscountTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductDiscountTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTopicsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTopicsLabel_idTopics}"/>
+                    <h:outputText value="#{topicsController.selected.idTopics}" title="#{bundle.ViewTopicsTitle_idTopics}"/>
+                    <h:outputText value="#{bundle.ViewTopicsLabel_titleTopics}"/>
+                    <h:outputText value="#{topicsController.selected.titleTopics}" title="#{bundle.ViewTopicsTitle_titleTopics}"/>
+                    <h:outputText value="#{bundle.ViewTopicsLabel_rank}"/>
+                    <h:outputText value="#{topicsController.selected.rank}" title="#{bundle.ViewTopicsTitle_rank}"/>
+                    <h:outputText value="#{bundle.ViewTopicsLabel_topicsidTopics}"/>
+                    <h:outputText value="#{topicsController.selected.topicsidTopics}" title="#{bundle.ViewTopicsTitle_topicsidTopics}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{topicsController.destroyAndView}" value="#{bundle.ViewTopicsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTopicsEditLink}"/>
+                <br />
+                <h:commandLink action="#{topicsController.prepareCreate}" value="#{bundle.ViewTopicsCreateLink}" />
+                <br />
+                <h:commandLink action="#{topicsController.prepareList}" value="#{bundle.ViewTopicsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTopicsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

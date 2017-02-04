@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFactorsTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFactorsTblEmpty}" rendered="#{factorsTblController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{factorsTblController.items.rowCount > 0}">
+                    <h:outputText value="#{factorsTblController.pagination.pageFirstItem + 1}..#{factorsTblController.pagination.pageLastItem + 1}/#{factorsTblController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{factorsTblController.previous}" value="#{bundle.Previous} #{factorsTblController.pagination.pageSize}" rendered="#{factorsTblController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{factorsTblController.next}" value="#{bundle.Next} #{factorsTblController.pagination.pageSize}" rendered="#{factorsTblController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{factorsTblController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_idFactorsTbl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFactorsTbl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_registerDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.registerDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_factorPostalCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.factorPostalCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_factorAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.factorAddress}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_factorNameAndFamily}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.factorNameAndFamily}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_postCost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.postCost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_emphericalCost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emphericalCost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_descriptionFactor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descriptionFactor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFactorsTblTitle_userUSERID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userUSERID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{factorsTblController.prepareView}" value="#{bundle.ListFactorsTblViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{factorsTblController.prepareEdit}" value="#{bundle.ListFactorsTblEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{factorsTblController.destroy}" value="#{bundle.ListFactorsTblDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{factorsTblController.prepareCreate}" value="#{bundle.ListFactorsTblCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFactorsTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

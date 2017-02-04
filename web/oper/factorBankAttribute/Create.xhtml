@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFactorBankAttributeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFactorBankAttributeLabel_idFactorBankAttribute}" for="idFactorBankAttribute" />
+                    <h:inputText id="idFactorBankAttribute" value="#{factorBankAttributeController.selected.idFactorBankAttribute}" title="#{bundle.CreateFactorBankAttributeTitle_idFactorBankAttribute}" required="true" requiredMessage="#{bundle.CreateFactorBankAttributeRequiredMessage_idFactorBankAttribute}"/>
+                    <h:outputLabel value="#{bundle.CreateFactorBankAttributeLabel_factorBankAttributeValue}" for="factorBankAttributeValue" />
+                    <h:inputTextarea rows="4" cols="30" id="factorBankAttributeValue" value="#{factorBankAttributeController.selected.factorBankAttributeValue}" title="#{bundle.CreateFactorBankAttributeTitle_factorBankAttributeValue}" />
+                    <h:outputLabel value="#{bundle.CreateFactorBankAttributeLabel_factorsTblidFactorsTbl}" for="factorsTblidFactorsTbl" />
+                    <h:selectOneMenu id="factorsTblidFactorsTbl" value="#{factorBankAttributeController.selected.factorsTblidFactorsTbl}" title="#{bundle.CreateFactorBankAttributeTitle_factorsTblidFactorsTbl}" required="true" requiredMessage="#{bundle.CreateFactorBankAttributeRequiredMessage_factorsTblidFactorsTbl}">
+                        <f:selectItems value="#{factorsTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFactorBankAttributeLabel_factorStateidFactorState}" for="factorStateidFactorState" />
+                    <h:selectOneMenu id="factorStateidFactorState" value="#{factorBankAttributeController.selected.factorStateidFactorState}" title="#{bundle.CreateFactorBankAttributeTitle_factorStateidFactorState}" required="true" requiredMessage="#{bundle.CreateFactorBankAttributeRequiredMessage_factorStateidFactorState}">
+                        <f:selectItems value="#{factorStateController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFactorBankAttributeLabel_bankAttributesidBankAttributes}" for="bankAttributesidBankAttributes" />
+                    <h:selectOneMenu id="bankAttributesidBankAttributes" value="#{factorBankAttributeController.selected.bankAttributesidBankAttributes}" title="#{bundle.CreateFactorBankAttributeTitle_bankAttributesidBankAttributes}" required="true" requiredMessage="#{bundle.CreateFactorBankAttributeRequiredMessage_bankAttributesidBankAttributes}">
+                        <f:selectItems value="#{bankAttributesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{factorBankAttributeController.create}" value="#{bundle.CreateFactorBankAttributeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{factorBankAttributeController.prepareList}" value="#{bundle.CreateFactorBankAttributeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFactorBankAttributeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

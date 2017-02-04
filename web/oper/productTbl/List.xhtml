@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListProductTblEmpty}" rendered="#{productTblController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{productTblController.items.rowCount > 0}">
+                <h:outputText value="#{productTblController.pagination.pageFirstItem + 1}..#{productTblController.pagination.pageLastItem + 1}/#{productTblController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{productTblController.previous}" value="#{bundle.Previous} #{productTblController.pagination.pageSize}" rendered="#{productTblController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{productTblController.next}" value="#{bundle.Next} #{productTblController.pagination.pageSize}" rendered="#{productTblController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{productTblController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_idProduct}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idProduct}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_titleProduct}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.titleProduct}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_registerDate}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.registerDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_isSuggest}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.isSuggest}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_description}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_feacher}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.feacher}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_bestSeller}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.bestSeller}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_summaryProduct}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.summaryProduct}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_garantyTypeidGarantyType}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.garantyTypeidGarantyType}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_topicsidTopics}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.topicsidTopics}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_productDiscountTblidProductDiscount}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.productDiscountTblidProductDiscount}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_brandsidBrands}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.brandsidBrands}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductTblTitle_productTblidProduct}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.productTblidProduct}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{productTblController.prepareView}" value="#{bundle.ListProductTblViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{productTblController.prepareEdit}" value="#{bundle.ListProductTblEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{productTblController.destroy}" value="#{bundle.ListProductTblDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{productTblController.prepareCreate}" value="#{bundle.ListProductTblCreateLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.ListProductTblIndexLink}"/>
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

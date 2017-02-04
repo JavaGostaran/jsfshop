@@ -1,0 +1,235 @@
+
+<?xhtml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="template/themplate.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <style>
+                .direct
+                {
+                    direction: rtl;
+                }
+            </style>
+            <h:form>
+                <div class="span9">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                        <li><a href="products.html">Products</a> <span class="divider">/</span></li>
+                        <li class="active">product Details</li>
+                    </ul>
+                    <div class="row">	  
+                        <div id="gallery" class="span3">
+
+                            <a href="#{productTblController.selected.getImageProductList().get(0).getImageUrl()}" title="#{productTblController.selected.summaryProduct }">
+                                <img src="#{productTblController.selected.getImageProductList().get(0).getImageUrl()}" style="width:100%" alt="#{productTblController.selected.summaryProduct }"/>
+                            </a>
+
+
+                            <div id="differentview" class="moreOptopm carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        #{imageProductController.setIDProduct(productTblController.selected.idProduct)}
+                                        <ui:repeat value="#{imageProductController.smallImageItems}" var="item1"> 
+                                            <a href="#{item1.getImageUrl()}"><img style="width:29%" src="#{item1.getImageUrl()}" alt=""/></a>
+                                        </ui:repeat>
+                                    </div>
+
+                                </div>
+                                <!-- 
+                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
+                                -->
+                            </div>
+                            <div class="btn-toolbar">
+                                <div class="btn-group">
+                                    <span class="btn"><i class="icon-envelope"></i></span>
+                                    <span class="btn" ><i class="icon-print"></i></span>
+                                    <span class="btn" ><i class="icon-zoom-in"></i></span>
+                                    <span class="btn" ><i class="icon-star"></i></span>
+                                    <span class="btn" ><i class=" icon-thumbs-up"></i></span>
+                                    <span class="btn" ><i class="icon-thumbs-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span6 direct">
+                            <h3>#{productTblController.selected.titleProduct} </h3>
+                            <small> #{productTblController.selected.summaryProduct}</small>
+                            <div style="direction: ltr">
+                                <a class="btn"  href="product_Categories.xhtml" style="display: block; width:80px ">
+                                انتخاب نوع                                                              
+                            </a>
+                                </div>
+                            <hr class="soft" />
+                            <div class="form-horizontal qtyFrm">
+                                <div class="control-group direct">
+                                    <div>
+                                        <label class="control-label"><span> #{productTblController.selected.getProductAttValVarientList().size() > 0 ? productTblController.selected.getProductAttValVarientList().get(0).getUpdatePrice() : 0} ریال</span></label>
+                                    </div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button  type="submit" class="btn btn-large btn-primary pull-right"> Add to <i class=" icon-shopping-cart"></i></button>
+                                            </td>
+                                            <td width="15px"></td>
+                                            <td>
+                                                <input type="number" class="span1" placeholder="تعداد"></input>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr class="soft"/>
+                            <h4 class="direct"><span>  موجودی فعلی :  </span>
+                                <span> #{productAttValVarientController.Sum_Product(productTblController.selected.idProduct)} 
+                                </span>
+                            </h4>
+
+                       
+
+                            <hr class="soft clr"/>
+                            <p>
+                                #{productTblController.returnSummaryOfProduct()}
+                            </p>
+                            <a class="btn btn-small pull-right" href="#detail"> اطلاعات بیشتر </a>
+                            <br class="clr"/>
+                            <a href="#" name="detail"></a>
+                            <hr class="soft"/>
+                        </div>
+
+                        <div class="span9">
+                            <ul id="productDetail" class="nav nav-tabs">
+                                <li class="active"><a href="#home" data-toggle="tab"> جزییات </a></li>
+                                <li><a href="#profile" data-toggle="tab"> محصولات مشابه </a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade active in" id="home" dir="rtl">
+                                    <h4 style="text-align: right">مشخصات محصول </h4>
+                                    <table class="table table-bordered">
+                                        <tbody>#{productAttributeValueConstController.setIDProduct(productTblController.selected.idProduct)}
+                                            <tr class="techSpecRow"><th style="direction: rtl;text-align: right" colspan="2"> مشخصات  </th></tr>
+                                            <ui:repeat value="#{productAttributeValueConstController.productAttConstItems}" var="itemConstAtt">
+                                                <tr class="techSpecRow">
+                                                    <td class="techSpecTD2" style="text-align: right">#{itemConstAtt.attributeValuesidAttributeValues.attributesTblidAttributes.titleAttributes}</td>
+                                                    <td class="techSpecTD1" style="text-align: right"> 
+                                                        #{itemConstAtt.attributeValuesidAttributeValues.titleValues}
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </tbody>
+                                    </table>
+
+                                    <h5> توضیحات </h5>
+                                    <p>
+                                        #{productTblController.selected.description}
+                                    </p>
+                                </div>
+
+                                <div class="tab-pane fade" id="profile">
+                                    <div id="myTab" class="pull-right">
+                                        <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+                                        <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+                                    </div>
+                                    <br class="clr"/>
+                                    <hr class="soft"/>
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="listView">
+
+                                            <h:panelGroup id="tabListview">
+                                                <ui:repeat value= "#{productTblController.items2}" var="itemm">
+                                                    <div class="row">	  
+                                                        <div class="span2">
+                                                            <img src="#{itemm.getImageProductList().size() > 0 ? itemm.getImageProductList().get(0).getImageUrl() : ''}" alt="" width="100"/>
+                                                        </div>
+                                                        <div class="span4">
+                                                            <h5>#{itemm.titleProduct}</h5>
+                                                            <hr class="soft"/>
+                                                            <p>#{itemm.summaryProduct}
+                                                            </p>
+                                                            <h:commandLink class="btn btn-small pull-right" href="#{productTblController.prepareView()}"> جزییات بیشتر </h:commandLink>
+                                                            <br class="clr"/>
+                                                        </div>
+                                                        <div class="span3 alignR">
+                                                            <div class="form-horizontal qtyFrm">
+                                                                <h3> #{itemm.getProductAttValVarientList().size() > 0 ? itemm.getProductAttValVarientList().get(0).getUpdatePrice() : 0} ریال</h3>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox"/> Add to
+                                                                </label><br/>
+
+                                                                <h:commandLink href="#{productTblController.prepareView()}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></h:commandLink>
+                                                                <h:commandLink href="#{productTblController.prepareView()}" class="btn btn-large"><i class="icon-zoom-in"></i></h:commandLink>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="soft"/>
+                                                </ui:repeat>
+                                            </h:panelGroup>
+
+                                            <hr class="soft"/>
+
+                                        </div>
+                                        <div class="tab-pane active" id="blockView">
+                                            #{productTblController.setIDTopic(productTblController.selected.getTopicsidTopics().getIdTopics())}
+                                            #{productTblController.setIDProduct(productTblController.selected.idProduct)}
+                                            <h:panelGroup id="tabGridView">
+                                                <ul class="thumbnails">
+                                                    <ui:repeat value="#{productTblController.items2}" var="item">
+                                                        <li class="span3">
+                                                            <div class="thumbnail">
+                                                                <h:commandLink action="#{productTblController.prepareView()}">
+                                                                    <img src="#{item.getImageProductList().size() > 0 ? item.getImageProductList().get(0).getImageUrl() : ''}" alt="" width="100"/>
+                                                                </h:commandLink>
+
+                                                                <div class="caption">
+                                                                    <h5>#{item.titleProduct}</h5>
+                                                                    <p> 
+                                                                        #{item.summaryProduct} 
+                                                                    </p>
+                                                                    <h4 style="text-align:center">#{item.getProductAttValVarientList().size() > 0 ? item.getProductAttValVarientList().get(0).getUpdatePrice() : 0} ریال</h4>
+                                                                    <h4 style="text-align:center">
+                                                                        <h:commandLink action="#{productTblController.prepareView()}"> <i class="icon-zoom-in"></i></h:commandLink>
+                                                                        <h:commandLink class="btn">
+                                                                            Add to <i class="icon-shopping-cart"></i>
+
+                                                                        </h:commandLink>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ui:repeat>
+                                                </ul>
+                                            </h:panelGroup>  
+                                        </div>
+                                        <h:panelGroup class="pagination" id="paginationDiv">
+                                            <ul>
+                                                <h:commandLink style="color: maroon">Previous
+                                                    <f:ajax render="tabListview paginationDiv tabGridView" listener="#{productTblController.previousSimilarPage()}"/>
+                                                </h:commandLink>
+                                                <h:commandLink class="#{productTblController.similarProductPagination.hasNextPage ? '' : 'disabled'}">Next
+                                                    <f:ajax render="tabListview paginationDiv tabGridView" listener="#{productTblController.nextSimilarPage()}"/>
+                                                </h:commandLink>
+
+                                            </ul> 
+                                        </h:panelGroup>
+
+                                    </div>
+                                    <br class="clr"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

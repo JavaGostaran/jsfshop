@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_idProduct}" for="idProduct" />
+                    <h:inputText id="idProduct" value="#{productTblController.selected.idProduct}" title="#{bundle.EditProductTblTitle_idProduct}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_idProduct}"/>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_titleProduct}" for="titleProduct" />
+                    <h:inputTextarea rows="4" cols="30" id="titleProduct" value="#{productTblController.selected.titleProduct}" title="#{bundle.EditProductTblTitle_titleProduct}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_titleProduct}"/>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_registerDate}" for="registerDate" />
+                    <h:inputText id="registerDate" value="#{productTblController.selected.registerDate}" title="#{bundle.EditProductTblTitle_registerDate}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_registerDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_isSuggest}" for="isSuggest" />
+                    <h:inputText id="isSuggest" value="#{productTblController.selected.isSuggest}" title="#{bundle.EditProductTblTitle_isSuggest}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_isSuggest}"/>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{productTblController.selected.description}" title="#{bundle.EditProductTblTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_feacher}" for="feacher" />
+                    <h:inputText id="feacher" value="#{productTblController.selected.feacher}" title="#{bundle.EditProductTblTitle_feacher}" />
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_bestSeller}" for="bestSeller" />
+                    <h:inputText id="bestSeller" value="#{productTblController.selected.bestSeller}" title="#{bundle.EditProductTblTitle_bestSeller}" />
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_summaryProduct}" for="summaryProduct" />
+                    <h:inputTextarea rows="4" cols="30" id="summaryProduct" value="#{productTblController.selected.summaryProduct}" title="#{bundle.EditProductTblTitle_summaryProduct}" />
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_garantyTypeidGarantyType}" for="garantyTypeidGarantyType" />
+                    <h:selectOneMenu id="garantyTypeidGarantyType" value="#{productTblController.selected.garantyTypeidGarantyType}" title="#{bundle.EditProductTblTitle_garantyTypeidGarantyType}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_garantyTypeidGarantyType}">
+                        <f:selectItems value="#{garantyTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_topicsidTopics}" for="topicsidTopics" />
+                    <h:selectOneMenu id="topicsidTopics" value="#{productTblController.selected.topicsidTopics}" title="#{bundle.EditProductTblTitle_topicsidTopics}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_topicsidTopics}">
+                        <f:selectItems value="#{topicsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_productDiscountTblidProductDiscount}" for="productDiscountTblidProductDiscount" />
+                    <h:selectOneMenu id="productDiscountTblidProductDiscount" value="#{productTblController.selected.productDiscountTblidProductDiscount}" title="#{bundle.EditProductTblTitle_productDiscountTblidProductDiscount}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_productDiscountTblidProductDiscount}">
+                        <f:selectItems value="#{productDiscountTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_brandsidBrands}" for="brandsidBrands" />
+                    <h:selectOneMenu id="brandsidBrands" value="#{productTblController.selected.brandsidBrands}" title="#{bundle.EditProductTblTitle_brandsidBrands}" required="true" requiredMessage="#{bundle.EditProductTblRequiredMessage_brandsidBrands}">
+                        <f:selectItems value="#{brandsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductTblLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{productTblController.selected.productTblidProduct}" title="#{bundle.EditProductTblTitle_productTblidProduct}" >
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productTblController.update}" value="#{bundle.EditProductTblSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductTblViewLink}"/>
+                <br />
+                <h:commandLink action="#{productTblController.prepareList}" value="#{bundle.EditProductTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductTblIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductAttributeValuesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductAttributeValuesEmpty}" rendered="#{productAttributeValuesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productAttributeValuesController.items.rowCount > 0}">
+                    <h:outputText value="#{productAttributeValuesController.pagination.pageFirstItem + 1}..#{productAttributeValuesController.pagination.pageLastItem + 1}/#{productAttributeValuesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productAttributeValuesController.previous}" value="#{bundle.Previous} #{productAttributeValuesController.pagination.pageSize}" rendered="#{productAttributeValuesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productAttributeValuesController.next}" value="#{bundle.Next} #{productAttributeValuesController.pagination.pageSize}" rendered="#{productAttributeValuesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productAttributeValuesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttributeValuesTitle_idProductAttribute}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProductAttribute}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttributeValuesTitle_productTblidProduct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.productTblidProduct}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttributeValuesTitle_attributeValuesidAttributeValues}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.attributeValuesidAttributeValues}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productAttributeValuesController.prepareView}" value="#{bundle.ListProductAttributeValuesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productAttributeValuesController.prepareEdit}" value="#{bundle.ListProductAttributeValuesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productAttributeValuesController.destroy}" value="#{bundle.ListProductAttributeValuesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productAttributeValuesController.prepareCreate}" value="#{bundle.ListProductAttributeValuesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductAttributeValuesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

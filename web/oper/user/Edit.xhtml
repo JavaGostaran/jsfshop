@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUserLabel_userid}" for="userid" />
+                    <h:inputText id="userid" value="#{userController.selected.userid}" title="#{bundle.EditUserTitle_userid}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_userid}"/>
+                    <h:outputLabel value="#{bundle.EditUserLabel_fname}" for="fname" />
+                    <h:inputText id="fname" value="#{userController.selected.fname}" title="#{bundle.EditUserTitle_fname}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_lname}" for="lname" />
+                    <h:inputText id="lname" value="#{userController.selected.lname}" title="#{bundle.EditUserTitle_lname}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.EditUserTitle_username}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_username}"/>
+                    <h:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{userController.selected.phone}" title="#{bundle.EditUserTitle_phone}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_position}" for="position" />
+                    <h:inputText id="position" value="#{userController.selected.position}" title="#{bundle.EditUserTitle_position}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_enabled}" for="enabled" />
+                    <h:inputText id="enabled" value="#{userController.selected.enabled}" title="#{bundle.EditUserTitle_enabled}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.EditUserTitle_password}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_dt}" for="dt" />
+                    <h:inputText id="dt" value="#{userController.selected.dt}" title="#{bundle.EditUserTitle_dt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditUserLabel_hash}" for="hash" />
+                    <h:inputText id="hash" value="#{userController.selected.hash}" title="#{bundle.EditUserTitle_hash}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_yer}" for="yer" />
+                    <h:inputText id="yer" value="#{userController.selected.yer}" title="#{bundle.EditUserTitle_yer}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_website}" for="website" />
+                    <h:inputText id="website" value="#{userController.selected.website}" title="#{bundle.EditUserTitle_website}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_userrolesUSERROLEID}" for="userrolesUSERROLEID" />
+                    <h:selectOneMenu id="userrolesUSERROLEID" value="#{userController.selected.userrolesUSERROLEID}" title="#{bundle.EditUserTitle_userrolesUSERROLEID}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_userrolesUSERROLEID}">
+                        <f:selectItems value="#{userRolesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{userController.update}" value="#{bundle.EditUserSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUserViewLink}"/>
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{bundle.EditUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUserIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

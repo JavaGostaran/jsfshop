@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTopicsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTopicsEmpty}" rendered="#{topicsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{topicsController.items.rowCount > 0}">
+                    <h:outputText value="#{topicsController.pagination.pageFirstItem + 1}..#{topicsController.pagination.pageLastItem + 1}/#{topicsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{topicsController.previous}" value="#{bundle.Previous} #{topicsController.pagination.pageSize}" rendered="#{topicsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{topicsController.next}" value="#{bundle.Next} #{topicsController.pagination.pageSize}" rendered="#{topicsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{topicsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTopicsTitle_idTopics}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTopics}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTopicsTitle_titleTopics}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleTopics}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTopicsTitle_rank}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rank}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTopicsTitle_topicsidTopics}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.topicsidTopics}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{topicsController.prepareView}" value="#{bundle.ListTopicsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{topicsController.prepareEdit}" value="#{bundle.ListTopicsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{topicsController.destroy}" value="#{bundle.ListTopicsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{topicsController.prepareCreate}" value="#{bundle.ListTopicsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTopicsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

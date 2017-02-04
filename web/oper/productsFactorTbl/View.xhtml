@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductsFactorTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_productsCount}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.productsCount}" title="#{bundle.ViewProductsFactorTblTitle_productsCount}"/>
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_productsUnitPrice}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.productsUnitPrice}" title="#{bundle.ViewProductsFactorTblTitle_productsUnitPrice}"/>
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_productsDiscountPercent}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.productsDiscountPercent}" title="#{bundle.ViewProductsFactorTblTitle_productsDiscountPercent}"/>
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_idProductsFactor}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.idProductsFactor}" title="#{bundle.ViewProductsFactorTblTitle_idProductsFactor}"/>
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_productTblidProduct}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.productTblidProduct}" title="#{bundle.ViewProductsFactorTblTitle_productTblidProduct}"/>
+                    <h:outputText value="#{bundle.ViewProductsFactorTblLabel_factorsTblidFactorsTbl}"/>
+                    <h:outputText value="#{productsFactorTblController.selected.factorsTblidFactorsTbl}" title="#{bundle.ViewProductsFactorTblTitle_factorsTblidFactorsTbl}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productsFactorTblController.destroyAndView}" value="#{bundle.ViewProductsFactorTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductsFactorTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{productsFactorTblController.prepareCreate}" value="#{bundle.ViewProductsFactorTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{productsFactorTblController.prepareList}" value="#{bundle.ViewProductsFactorTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductsFactorTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

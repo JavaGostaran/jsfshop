@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFactorBankAttributeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFactorBankAttributeLabel_idFactorBankAttribute}"/>
+                    <h:outputText value="#{factorBankAttributeController.selected.idFactorBankAttribute}" title="#{bundle.ViewFactorBankAttributeTitle_idFactorBankAttribute}"/>
+                    <h:outputText value="#{bundle.ViewFactorBankAttributeLabel_factorBankAttributeValue}"/>
+                    <h:outputText value="#{factorBankAttributeController.selected.factorBankAttributeValue}" title="#{bundle.ViewFactorBankAttributeTitle_factorBankAttributeValue}"/>
+                    <h:outputText value="#{bundle.ViewFactorBankAttributeLabel_factorsTblidFactorsTbl}"/>
+                    <h:outputText value="#{factorBankAttributeController.selected.factorsTblidFactorsTbl}" title="#{bundle.ViewFactorBankAttributeTitle_factorsTblidFactorsTbl}"/>
+                    <h:outputText value="#{bundle.ViewFactorBankAttributeLabel_factorStateidFactorState}"/>
+                    <h:outputText value="#{factorBankAttributeController.selected.factorStateidFactorState}" title="#{bundle.ViewFactorBankAttributeTitle_factorStateidFactorState}"/>
+                    <h:outputText value="#{bundle.ViewFactorBankAttributeLabel_bankAttributesidBankAttributes}"/>
+                    <h:outputText value="#{factorBankAttributeController.selected.bankAttributesidBankAttributes}" title="#{bundle.ViewFactorBankAttributeTitle_bankAttributesidBankAttributes}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{factorBankAttributeController.destroyAndView}" value="#{bundle.ViewFactorBankAttributeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFactorBankAttributeEditLink}"/>
+                <br />
+                <h:commandLink action="#{factorBankAttributeController.prepareCreate}" value="#{bundle.ViewFactorBankAttributeCreateLink}" />
+                <br />
+                <h:commandLink action="#{factorBankAttributeController.prepareList}" value="#{bundle.ViewFactorBankAttributeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFactorBankAttributeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

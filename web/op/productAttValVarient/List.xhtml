@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductAttValVarientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProductAttValVarientEmpty}" rendered="#{productAttValVarientController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{productAttValVarientController.items.rowCount > 0}">
+                    <h:outputText value="#{productAttValVarientController.pagination.pageFirstItem + 1}..#{productAttValVarientController.pagination.pageLastItem + 1}/#{productAttValVarientController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productAttValVarientController.previous}" value="#{bundle.Previous} #{productAttValVarientController.pagination.pageSize}" rendered="#{productAttValVarientController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productAttValVarientController.next}" value="#{bundle.Next} #{productAttValVarientController.pagination.pageSize}" rendered="#{productAttValVarientController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productAttValVarientController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_idProductAttValVarient}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProductAttValVarient}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_categoryID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoryID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_updatePrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updatePrice}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_updateCount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.updateCount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_productTblidProduct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.productTblidProduct}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductAttValVarientTitle_attributeValuesidAttributeValues}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.attributeValuesidAttributeValues}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productAttValVarientController.prepareView}" value="#{bundle.ListProductAttValVarientViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productAttValVarientController.prepareEdit}" value="#{bundle.ListProductAttValVarientEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productAttValVarientController.destroy}" value="#{bundle.ListProductAttValVarientDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{productAttValVarientController.prepareCreate}" value="#{bundle.ListProductAttValVarientCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProductAttValVarientIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

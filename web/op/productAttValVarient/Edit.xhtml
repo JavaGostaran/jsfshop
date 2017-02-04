@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductAttValVarientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_idProductAttValVarient}" for="idProductAttValVarient" />
+                    <h:inputText id="idProductAttValVarient" value="#{productAttValVarientController.selected.idProductAttValVarient}" title="#{bundle.EditProductAttValVarientTitle_idProductAttValVarient}" required="true" requiredMessage="#{bundle.EditProductAttValVarientRequiredMessage_idProductAttValVarient}"/>
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_categoryID}" for="categoryID" />
+                    <h:inputText id="categoryID" value="#{productAttValVarientController.selected.categoryID}" title="#{bundle.EditProductAttValVarientTitle_categoryID}" />
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_updatePrice}" for="updatePrice" />
+                    <h:inputText id="updatePrice" value="#{productAttValVarientController.selected.updatePrice}" title="#{bundle.EditProductAttValVarientTitle_updatePrice}" />
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_updateCount}" for="updateCount" />
+                    <h:inputText id="updateCount" value="#{productAttValVarientController.selected.updateCount}" title="#{bundle.EditProductAttValVarientTitle_updateCount}" />
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{productAttValVarientController.selected.productTblidProduct}" title="#{bundle.EditProductAttValVarientTitle_productTblidProduct}" required="true" requiredMessage="#{bundle.EditProductAttValVarientRequiredMessage_productTblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductAttValVarientLabel_attributeValuesidAttributeValues}" for="attributeValuesidAttributeValues" />
+                    <h:selectOneMenu id="attributeValuesidAttributeValues" value="#{productAttValVarientController.selected.attributeValuesidAttributeValues}" title="#{bundle.EditProductAttValVarientTitle_attributeValuesidAttributeValues}" required="true" requiredMessage="#{bundle.EditProductAttValVarientRequiredMessage_attributeValuesidAttributeValues}">
+                        <f:selectItems value="#{attributeValuesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productAttValVarientController.update}" value="#{bundle.EditProductAttValVarientSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductAttValVarientViewLink}"/>
+                <br />
+                <h:commandLink action="#{productAttValVarientController.prepareList}" value="#{bundle.EditProductAttValVarientShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductAttValVarientIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

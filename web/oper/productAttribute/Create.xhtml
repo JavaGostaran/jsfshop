@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductAttributeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductAttributeLabel_idProductAttribute}" for="idProductAttribute" />
+                    <h:inputText id="idProductAttribute" value="#{productAttributeController.selected.idProductAttribute}" title="#{bundle.CreateProductAttributeTitle_idProductAttribute}" required="true" requiredMessage="#{bundle.CreateProductAttributeRequiredMessage_idProductAttribute}"/>
+                    <h:outputLabel value="#{bundle.CreateProductAttributeLabel_isSelectable}" for="isSelectable" />
+                    <h:inputText id="isSelectable" value="#{productAttributeController.selected.isSelectable}" title="#{bundle.CreateProductAttributeTitle_isSelectable}" required="true" requiredMessage="#{bundle.CreateProductAttributeRequiredMessage_isSelectable}"/>
+                    <h:outputLabel value="#{bundle.CreateProductAttributeLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{productAttributeController.selected.productTblidProduct}" title="#{bundle.CreateProductAttributeTitle_productTblidProduct}" required="true" requiredMessage="#{bundle.CreateProductAttributeRequiredMessage_productTblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProductAttributeLabel_attributesTblidAttributes}" for="attributesTblidAttributes" />
+                    <h:selectOneMenu id="attributesTblidAttributes" value="#{productAttributeController.selected.attributesTblidAttributes}" title="#{bundle.CreateProductAttributeTitle_attributesTblidAttributes}" required="true" requiredMessage="#{bundle.CreateProductAttributeRequiredMessage_attributesTblidAttributes}">
+                        <f:selectItems value="#{attributesTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productAttributeController.create}" value="#{bundle.CreateProductAttributeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productAttributeController.prepareList}" value="#{bundle.CreateProductAttributeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductAttributeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

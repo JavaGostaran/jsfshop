@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSerialTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSerialTblLabel_idSerialTbl}"/>
+                    <h:outputText value="#{serialTblController.selected.idSerialTbl}" title="#{bundle.ViewSerialTblTitle_idSerialTbl}"/>
+                    <h:outputText value="#{bundle.ViewSerialTblLabel_serialCode}"/>
+                    <h:outputText value="#{serialTblController.selected.serialCode}" title="#{bundle.ViewSerialTblTitle_serialCode}"/>
+                    <h:outputText value="#{bundle.ViewSerialTblLabel_registerDateSerial}"/>
+                    <h:outputText value="#{serialTblController.selected.registerDateSerial}" title="#{bundle.ViewSerialTblTitle_registerDateSerial}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSerialTblLabel_priceSerial}"/>
+                    <h:outputText value="#{serialTblController.selected.priceSerial}" title="#{bundle.ViewSerialTblTitle_priceSerial}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{serialTblController.destroyAndView}" value="#{bundle.ViewSerialTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSerialTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{serialTblController.prepareCreate}" value="#{bundle.ViewSerialTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{serialTblController.prepareList}" value="#{bundle.ViewSerialTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSerialTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

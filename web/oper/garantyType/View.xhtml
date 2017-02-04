@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGarantyTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewGarantyTypeLabel_idGarantyType}"/>
+                    <h:outputText value="#{garantyTypeController.selected.idGarantyType}" title="#{bundle.ViewGarantyTypeTitle_idGarantyType}"/>
+                    <h:outputText value="#{bundle.ViewGarantyTypeLabel_titleGarantyType}"/>
+                    <h:outputText value="#{garantyTypeController.selected.titleGarantyType}" title="#{bundle.ViewGarantyTypeTitle_titleGarantyType}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{garantyTypeController.destroyAndView}" value="#{bundle.ViewGarantyTypeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewGarantyTypeEditLink}"/>
+                <br />
+                <h:commandLink action="#{garantyTypeController.prepareCreate}" value="#{bundle.ViewGarantyTypeCreateLink}" />
+                <br />
+                <h:commandLink action="#{garantyTypeController.prepareList}" value="#{bundle.ViewGarantyTypeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewGarantyTypeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

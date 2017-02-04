@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductAttValVarientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_idProductAttValVarient}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.idProductAttValVarient}" title="#{bundle.ViewProductAttValVarientTitle_idProductAttValVarient}"/>
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_categoryID}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.categoryID}" title="#{bundle.ViewProductAttValVarientTitle_categoryID}"/>
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_updatePrice}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.updatePrice}" title="#{bundle.ViewProductAttValVarientTitle_updatePrice}"/>
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_updateCount}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.updateCount}" title="#{bundle.ViewProductAttValVarientTitle_updateCount}"/>
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_productTblidProduct}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.productTblidProduct}" title="#{bundle.ViewProductAttValVarientTitle_productTblidProduct}"/>
+                    <h:outputText value="#{bundle.ViewProductAttValVarientLabel_attributeValuesidAttributeValues}"/>
+                    <h:outputText value="#{productAttValVarientController.selected.attributeValuesidAttributeValues}" title="#{bundle.ViewProductAttValVarientTitle_attributeValuesidAttributeValues}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productAttValVarientController.destroyAndView}" value="#{bundle.ViewProductAttValVarientDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProductAttValVarientEditLink}"/>
+                <br />
+                <h:commandLink action="#{productAttValVarientController.prepareCreate}" value="#{bundle.ViewProductAttValVarientCreateLink}" />
+                <br />
+                <h:commandLink action="#{productAttValVarientController.prepareList}" value="#{bundle.ViewProductAttValVarientShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProductAttValVarientIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

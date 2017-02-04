@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductsFactorTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_productsCount}" for="productsCount" />
+                    <h:inputText id="productsCount" value="#{productsFactorTblController.selected.productsCount}" title="#{bundle.CreateProductsFactorTblTitle_productsCount}" required="true" requiredMessage="#{bundle.CreateProductsFactorTblRequiredMessage_productsCount}"/>
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_productsUnitPrice}" for="productsUnitPrice" />
+                    <h:inputText id="productsUnitPrice" value="#{productsFactorTblController.selected.productsUnitPrice}" title="#{bundle.CreateProductsFactorTblTitle_productsUnitPrice}" />
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_productsDiscountPercent}" for="productsDiscountPercent" />
+                    <h:inputText id="productsDiscountPercent" value="#{productsFactorTblController.selected.productsDiscountPercent}" title="#{bundle.CreateProductsFactorTblTitle_productsDiscountPercent}" />
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_idProductsFactor}" for="idProductsFactor" />
+                    <h:inputText id="idProductsFactor" value="#{productsFactorTblController.selected.idProductsFactor}" title="#{bundle.CreateProductsFactorTblTitle_idProductsFactor}" required="true" requiredMessage="#{bundle.CreateProductsFactorTblRequiredMessage_idProductsFactor}"/>
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{productsFactorTblController.selected.productTblidProduct}" title="#{bundle.CreateProductsFactorTblTitle_productTblidProduct}" required="true" requiredMessage="#{bundle.CreateProductsFactorTblRequiredMessage_productTblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProductsFactorTblLabel_factorsTblidFactorsTbl}" for="factorsTblidFactorsTbl" />
+                    <h:selectOneMenu id="factorsTblidFactorsTbl" value="#{productsFactorTblController.selected.factorsTblidFactorsTbl}" title="#{bundle.CreateProductsFactorTblTitle_factorsTblidFactorsTbl}" required="true" requiredMessage="#{bundle.CreateProductsFactorTblRequiredMessage_factorsTblidFactorsTbl}">
+                        <f:selectItems value="#{factorsTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productsFactorTblController.create}" value="#{bundle.CreateProductsFactorTblSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productsFactorTblController.prepareList}" value="#{bundle.CreateProductsFactorTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductsFactorTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,116 @@
+
+<?xhtml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="template/themplate.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <div class="span9">		
+                <div class="well well-small">
+                    <h4 dir="rtl"> لیست سفارشی <small class="pull-right"></small></h4>
+                    <h:form>
+                        <div class="row-fluid">
+                            <div id="featured" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <ui:repeat value="#{productTblController.feacherItems}" var="item" varStatus="gIndex">
+                                        <h:outputText escape="false" rendered="#{gIndex.index % 4 eq 0 and gIndex.first}" value="&lt;div class=&quot;item active&quot;&gt;&lt;ul class=&quot;thumbnails&quot;&gt;"/>
+                                        <h:outputText escape="false" rendered="#{gIndex.index % 4 eq 0 and not gIndex.first}" value="&lt;div class=&quot;item&quot;&gt;&lt;ul class=&quot;thumbnails&quot;&gt;"/>
+                                        <li class="span3">
+                                            <div class="thumbnail">
+                                                <i class="tag"></i>
+                                                <h:panelGroup rendered="#{item.getImageProductList().size() gt 0}">
+                                                    <h:commandLink action="#{productTblController.prepareFeacherView()}">
+                                                        <img src="#{item.getImageProductList().get(0).getImageUrl()}" alt=""/>
+                                                    </h:commandLink>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{item.getImageProductList().size() eq 0}">
+                                                    <h:commandLink action="#{productTblController.prepareFeacherView()}">
+                                                        <img src="#{request.contextPath}/res/themes/images/new.png" alt=""/>
+
+                                                    </h:commandLink>
+
+                                                </h:panelGroup>
+
+                                                <div class="caption">
+                                                    <h5>#{item.titleProduct}<br />
+                                                        <label class="control-label"><span> #{item.getProductAttValVarientList().size() eq 0 ? 0 : item.getProductAttValVarientList().get(0).getUpdatePrice() } ریال</span></label>
+                                                        <br /></h5>
+                                                    <h4>
+                                                        <h:commandLink class="btn"  action="#{productTblController.prepareFeacherView()}" style="display: block">
+                                                            مشاهده                                                              
+                                                        </h:commandLink>
+
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <h:outputText escape="false" rendered="#{gIndex.index % 4 eq 3}" value="&lt;/div&gt;&lt;/ul&gt;"/>
+                                    </ui:repeat>
+                                    <h:outputText escape="false" value="&lt;/div&gt;&lt;/ul&gt;"/>
+                                </div>
+
+
+                                <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+                                <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+
+
+                            </div>
+                        </div>
+
+                        <div class="span9"><br /><br />
+                            <h4 dir="rtl"> آخرین افزوده ها </h4>
+                            <br />
+                            <ul class="thumbnails">
+                                <ui:repeat value="#{productTblController.latestItems}" var="latestItem">
+                                    <li class="span3">
+
+                                        <div class="thumbnail" style="width: 250px">
+                                            <h:panelGroup rendered="#{latestItem.getImageProductList().size() gt 0}">
+                                                <h:commandLink action="#{productTblController.prepareLatestView()}">
+                                                    <img src="#{latestItem.getImageProductList().get(0).getImageUrl()}" alt=""/>
+                                                </h:commandLink>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{latestItem.getImageProductList().size() eq 0}">
+                                                <h:commandLink action="#{productTblController.prepareLatestView()}">
+                                                    <img src="#{request.contextPath}/res/themes/images/new.png" alt=""/>
+                                                </h:commandLink>
+
+
+                                            </h:panelGroup>
+                                            <div class="caption">
+                                                <h5>#{latestItem.titleProduct}<br /><label class="control-label"><span> #{productTblController.selected.getProductAttValVarientList().get(0).getUpdatePrice()} ریال</span></label></h5>
+                                                <p> 
+                                                    #{latestItem.summaryProduct} 
+                                                </p>
+
+                                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+            <script src="res/themes/js/jquery.js" type="text/javascript"></script>
+            <script src="res/themes/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="res/themes/js/google-code-prettify/prettify.js"></script>
+
+            <script src="res/themes/js/bootshop.js"></script>
+            <script src="res/themes/js/jquery.lightbox-0.5.js"></script>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+
+

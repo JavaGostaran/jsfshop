@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsersFavoritsTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsersFavoritsTblLabel_id}"/>
+                    <h:outputText value="#{usersFavoritsTblController.selected.id}" title="#{bundle.ViewUsersFavoritsTblTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewUsersFavoritsTblLabel_userUSERID}"/>
+                    <h:outputText value="#{usersFavoritsTblController.selected.userUSERID}" title="#{bundle.ViewUsersFavoritsTblTitle_userUSERID}"/>
+                    <h:outputText value="#{bundle.ViewUsersFavoritsTblLabel_productTblidProduct}"/>
+                    <h:outputText value="#{usersFavoritsTblController.selected.productTblidProduct}" title="#{bundle.ViewUsersFavoritsTblTitle_productTblidProduct}"/>
+                    <h:outputText value="#{bundle.ViewUsersFavoritsTblLabel_favoritsTypeidFavoritsType}"/>
+                    <h:outputText value="#{usersFavoritsTblController.selected.favoritsTypeidFavoritsType}" title="#{bundle.ViewUsersFavoritsTblTitle_favoritsTypeidFavoritsType}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usersFavoritsTblController.destroyAndView}" value="#{bundle.ViewUsersFavoritsTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsersFavoritsTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{usersFavoritsTblController.prepareCreate}" value="#{bundle.ViewUsersFavoritsTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{usersFavoritsTblController.prepareList}" value="#{bundle.ViewUsersFavoritsTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsersFavoritsTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

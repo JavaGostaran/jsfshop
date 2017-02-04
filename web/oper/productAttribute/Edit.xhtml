@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductAttributeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductAttributeLabel_idProductAttribute}" for="idProductAttribute" />
+                    <h:inputText id="idProductAttribute" value="#{productAttributeController.selected.idProductAttribute}" title="#{bundle.EditProductAttributeTitle_idProductAttribute}" required="true" requiredMessage="#{bundle.EditProductAttributeRequiredMessage_idProductAttribute}"/>
+                    <h:outputLabel value="#{bundle.EditProductAttributeLabel_isSelectable}" for="isSelectable" />
+                    <h:inputText id="isSelectable" value="#{productAttributeController.selected.isSelectable}" title="#{bundle.EditProductAttributeTitle_isSelectable}" required="true" requiredMessage="#{bundle.EditProductAttributeRequiredMessage_isSelectable}"/>
+                    <h:outputLabel value="#{bundle.EditProductAttributeLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{productAttributeController.selected.productTblidProduct}" title="#{bundle.EditProductAttributeTitle_productTblidProduct}" required="true" requiredMessage="#{bundle.EditProductAttributeRequiredMessage_productTblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductAttributeLabel_attributesTblidAttributes}" for="attributesTblidAttributes" />
+                    <h:selectOneMenu id="attributesTblidAttributes" value="#{productAttributeController.selected.attributesTblidAttributes}" title="#{bundle.EditProductAttributeTitle_attributesTblidAttributes}" required="true" requiredMessage="#{bundle.EditProductAttributeRequiredMessage_attributesTblidAttributes}">
+                        <f:selectItems value="#{attributesTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productAttributeController.update}" value="#{bundle.EditProductAttributeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductAttributeViewLink}"/>
+                <br />
+                <h:commandLink action="#{productAttributeController.prepareList}" value="#{bundle.EditProductAttributeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductAttributeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

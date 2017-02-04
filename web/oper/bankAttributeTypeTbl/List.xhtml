@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBankAttributeTypeTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBankAttributeTypeTblEmpty}" rendered="#{bankAttributeTypeTblController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{bankAttributeTypeTblController.items.rowCount > 0}">
+                    <h:outputText value="#{bankAttributeTypeTblController.pagination.pageFirstItem + 1}..#{bankAttributeTypeTblController.pagination.pageLastItem + 1}/#{bankAttributeTypeTblController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{bankAttributeTypeTblController.previous}" value="#{bundle.Previous} #{bankAttributeTypeTblController.pagination.pageSize}" rendered="#{bankAttributeTypeTblController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{bankAttributeTypeTblController.next}" value="#{bundle.Next} #{bankAttributeTypeTblController.pagination.pageSize}" rendered="#{bankAttributeTypeTblController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{bankAttributeTypeTblController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBankAttributeTypeTblTitle_idBankAttributeType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idBankAttributeType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBankAttributeTypeTblTitle_titleBankAttributeType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titleBankAttributeType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{bankAttributeTypeTblController.prepareView}" value="#{bundle.ListBankAttributeTypeTblViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bankAttributeTypeTblController.prepareEdit}" value="#{bundle.ListBankAttributeTypeTblEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bankAttributeTypeTblController.destroy}" value="#{bundle.ListBankAttributeTypeTblDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{bankAttributeTypeTblController.prepareCreate}" value="#{bundle.ListBankAttributeTypeTblCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBankAttributeTypeTblIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

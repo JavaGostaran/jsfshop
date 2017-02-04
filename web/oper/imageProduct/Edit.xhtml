@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditImageProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditImageProductLabel_idImageProduct}" for="idImageProduct" />
+                    <h:inputText id="idImageProduct" value="#{imageProductController.selected.idImageProduct}" title="#{bundle.EditImageProductTitle_idImageProduct}" required="true" requiredMessage="#{bundle.EditImageProductRequiredMessage_idImageProduct}"/>
+                    <h:outputLabel value="#{bundle.EditImageProductLabel_imageUrl}" for="imageUrl" />
+                    <h:inputText id="imageUrl" value="#{imageProductController.selected.imageUrl}" title="#{bundle.EditImageProductTitle_imageUrl}" required="true" requiredMessage="#{bundle.EditImageProductRequiredMessage_imageUrl}"/>
+                    <h:outputLabel value="#{bundle.EditImageProductLabel_isActive}" for="isActive" />
+                    <h:inputText id="isActive" value="#{imageProductController.selected.isActive}" title="#{bundle.EditImageProductTitle_isActive}" required="true" requiredMessage="#{bundle.EditImageProductRequiredMessage_isActive}"/>
+                    <h:outputLabel value="#{bundle.EditImageProductLabel_productYblidProduct}" for="productYblidProduct" />
+                    <h:selectOneMenu id="productYblidProduct" value="#{imageProductController.selected.productYblidProduct}" title="#{bundle.EditImageProductTitle_productYblidProduct}" required="true" requiredMessage="#{bundle.EditImageProductRequiredMessage_productYblidProduct}">
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{imageProductController.update}" value="#{bundle.EditImageProductSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditImageProductViewLink}"/>
+                <br />
+                <h:commandLink action="#{imageProductController.prepareList}" value="#{bundle.EditImageProductShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditImageProductIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

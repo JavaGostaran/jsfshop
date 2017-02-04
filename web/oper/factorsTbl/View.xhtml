@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFactorsTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_idFactorsTbl}"/>
+                    <h:outputText value="#{factorsTblController.selected.idFactorsTbl}" title="#{bundle.ViewFactorsTblTitle_idFactorsTbl}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_registerDate}"/>
+                    <h:outputText value="#{factorsTblController.selected.registerDate}" title="#{bundle.ViewFactorsTblTitle_registerDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_factorPostalCode}"/>
+                    <h:outputText value="#{factorsTblController.selected.factorPostalCode}" title="#{bundle.ViewFactorsTblTitle_factorPostalCode}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_factorAddress}"/>
+                    <h:outputText value="#{factorsTblController.selected.factorAddress}" title="#{bundle.ViewFactorsTblTitle_factorAddress}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_factorNameAndFamily}"/>
+                    <h:outputText value="#{factorsTblController.selected.factorNameAndFamily}" title="#{bundle.ViewFactorsTblTitle_factorNameAndFamily}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_postCost}"/>
+                    <h:outputText value="#{factorsTblController.selected.postCost}" title="#{bundle.ViewFactorsTblTitle_postCost}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_emphericalCost}"/>
+                    <h:outputText value="#{factorsTblController.selected.emphericalCost}" title="#{bundle.ViewFactorsTblTitle_emphericalCost}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_descriptionFactor}"/>
+                    <h:outputText value="#{factorsTblController.selected.descriptionFactor}" title="#{bundle.ViewFactorsTblTitle_descriptionFactor}"/>
+                    <h:outputText value="#{bundle.ViewFactorsTblLabel_userUSERID}"/>
+                    <h:outputText value="#{factorsTblController.selected.userUSERID}" title="#{bundle.ViewFactorsTblTitle_userUSERID}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{factorsTblController.destroyAndView}" value="#{bundle.ViewFactorsTblDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFactorsTblEditLink}"/>
+                <br />
+                <h:commandLink action="#{factorsTblController.prepareCreate}" value="#{bundle.ViewFactorsTblCreateLink}" />
+                <br />
+                <h:commandLink action="#{factorsTblController.prepareList}" value="#{bundle.ViewFactorsTblShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFactorsTblIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

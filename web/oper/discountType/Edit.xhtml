@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDiscountTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDiscountTypeLabel_idDiscountType}" for="idDiscountType" />
+                    <h:inputText id="idDiscountType" value="#{discountTypeController.selected.idDiscountType}" title="#{bundle.EditDiscountTypeTitle_idDiscountType}" required="true" requiredMessage="#{bundle.EditDiscountTypeRequiredMessage_idDiscountType}"/>
+                    <h:outputLabel value="#{bundle.EditDiscountTypeLabel_discountTitle}" for="discountTitle" />
+                    <h:inputTextarea rows="4" cols="30" id="discountTitle" value="#{discountTypeController.selected.discountTitle}" title="#{bundle.EditDiscountTypeTitle_discountTitle}" required="true" requiredMessage="#{bundle.EditDiscountTypeRequiredMessage_discountTitle}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{discountTypeController.update}" value="#{bundle.EditDiscountTypeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDiscountTypeViewLink}"/>
+                <br />
+                <h:commandLink action="#{discountTypeController.prepareList}" value="#{bundle.EditDiscountTypeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDiscountTypeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

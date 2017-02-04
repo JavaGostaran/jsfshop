@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDiscountTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDiscountTypeLabel_idDiscountType}"/>
+                    <h:outputText value="#{discountTypeController.selected.idDiscountType}" title="#{bundle.ViewDiscountTypeTitle_idDiscountType}"/>
+                    <h:outputText value="#{bundle.ViewDiscountTypeLabel_discountTitle}"/>
+                    <h:outputText value="#{discountTypeController.selected.discountTitle}" title="#{bundle.ViewDiscountTypeTitle_discountTitle}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{discountTypeController.destroyAndView}" value="#{bundle.ViewDiscountTypeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDiscountTypeEditLink}"/>
+                <br />
+                <h:commandLink action="#{discountTypeController.prepareCreate}" value="#{bundle.ViewDiscountTypeCreateLink}" />
+                <br />
+                <h:commandLink action="#{discountTypeController.prepareList}" value="#{bundle.ViewDiscountTypeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDiscountTypeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

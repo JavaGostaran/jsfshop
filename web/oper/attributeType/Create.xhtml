@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAttributeTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAttributeTypeLabel_idAttributeType}" for="idAttributeType" />
+                    <h:inputText id="idAttributeType" value="#{attributeTypeController.selected.idAttributeType}" title="#{bundle.CreateAttributeTypeTitle_idAttributeType}" required="true" requiredMessage="#{bundle.CreateAttributeTypeRequiredMessage_idAttributeType}"/>
+                    <h:outputLabel value="#{bundle.CreateAttributeTypeLabel_titleAttributeType}" for="titleAttributeType" />
+                    <h:inputText id="titleAttributeType" value="#{attributeTypeController.selected.titleAttributeType}" title="#{bundle.CreateAttributeTypeTitle_titleAttributeType}" required="true" requiredMessage="#{bundle.CreateAttributeTypeRequiredMessage_titleAttributeType}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{attributeTypeController.create}" value="#{bundle.CreateAttributeTypeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{attributeTypeController.prepareList}" value="#{bundle.CreateAttributeTypeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAttributeTypeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

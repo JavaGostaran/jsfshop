@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsersFavoritsTblTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsersFavoritsTblLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{usersFavoritsTblController.selected.id}" title="#{bundle.EditUsersFavoritsTblTitle_id}" required="true" requiredMessage="#{bundle.EditUsersFavoritsTblRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUsersFavoritsTblLabel_userUSERID}" for="userUSERID" />
+                    <h:selectOneMenu id="userUSERID" value="#{usersFavoritsTblController.selected.userUSERID}" title="#{bundle.EditUsersFavoritsTblTitle_userUSERID}" required="true" requiredMessage="#{bundle.EditUsersFavoritsTblRequiredMessage_userUSERID}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUsersFavoritsTblLabel_productTblidProduct}" for="productTblidProduct" />
+                    <h:selectOneMenu id="productTblidProduct" value="#{usersFavoritsTblController.selected.productTblidProduct}" title="#{bundle.EditUsersFavoritsTblTitle_productTblidProduct}" >
+                        <f:selectItems value="#{productTblController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUsersFavoritsTblLabel_favoritsTypeidFavoritsType}" for="favoritsTypeidFavoritsType" />
+                    <h:selectOneMenu id="favoritsTypeidFavoritsType" value="#{usersFavoritsTblController.selected.favoritsTypeidFavoritsType}" title="#{bundle.EditUsersFavoritsTblTitle_favoritsTypeidFavoritsType}" >
+                        <f:selectItems value="#{favoritsTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{usersFavoritsTblController.update}" value="#{bundle.EditUsersFavoritsTblSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsersFavoritsTblViewLink}"/>
+                <br />
+                <h:commandLink action="#{usersFavoritsTblController.prepareList}" value="#{bundle.EditUsersFavoritsTblShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUsersFavoritsTblIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
